@@ -1,7 +1,7 @@
 require_relative '../services/websocket_handler'
 
 class Contact < ActiveRecord::Base
-  after_commit :broadcast_change, on: [:create, :update, :destroy]
+  after_commit :broadcast_change, on: [:update, :destroy]
 
   validates :first_name, :last_name, :email, :phone, presence: true
   validates :email, uniqueness: true
