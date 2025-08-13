@@ -1,0 +1,13 @@
+# SQLite database for development
+contacts.db*
+*.sqlite3
+
+# Ignore bundler config
+/.bundle
+
+# Ignore log files and temp files
+/log/*
+/tmp/*
+
+# Ignore system files
+.DS_Store
