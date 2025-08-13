@@ -12,3 +12,6 @@ gem "json", "~> 2.13"
 gem "rackup", "~> 2.2"
 gem "puma", "~> 6.6"
 gem "rake", "~> 13.3"
+
+gem 'rspec'
+gem 'rack-test'
