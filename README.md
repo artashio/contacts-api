@@ -5,9 +5,9 @@ Includes real-time updates via WebSocket.
 
 ## Prerequisites
 
-- Ruby
+- [Ruby](https://formulae.brew.sh/formula/ruby) 
 - [contact-client](https://github.com/artashio/contact-client)
-- [websocat](https://formulae.brew.sh/formula/websocat) to access websocket cli
+- [websocat](https://formulae.brew.sh/formula/websocat) (Optional) to access websocket cli
 
 ## Setup
 
