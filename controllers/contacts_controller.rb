@@ -45,26 +45,28 @@ class ContactsController < Sinatra::Base
             contact_id: contact.id,
             diff: previous.to_json
           )
+
           contact.to_json
         else
           status 422
           contact.errors.full_messages.first
         end
       end
-      else
-        status 404
-        {error: 'Not found'}.to_json
-      end
+    else
+      status 404
+      {error: 'Not found'}.to_json
+    end
   end
 
   delete '/contacts/:id' do
     contact = Contact.find_by(id: params[:id])
     if contact
-      ContactHistory.where(contact_id: contact.id).destroy_all
+      ActiveRecord::Base.transaction do
+        ContactHistory.where(contact_id: contact.id).destroy_all
 
-      contact.destroy
-  # WebSocketService.broadcast_update({action: 'delete', id: params[:id]})
-      status 204
+        contact.destroy
+        status 204
+      end
     else
       status 404
       {error: 'Not found'}.to_json

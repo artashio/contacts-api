@@ -62,10 +62,10 @@ RSpec.describe Contact, type: :model do
       contact.update(first_name: 'Janet')
     end
 
-    it 'sends a message to all websocket connections on update' do
+    it 'sends a message to all websocket connections on create' do
       ws_double = double('ws')
-      expect(ws_double).to receive(:send).with(/contact_updated/)
       allow(WebSocketHandler).to receive(:connections).and_return([ws_double])
+      expect(ws_double).to receive(:send).with(/new_contact_event/)
 
       contact = Contact.create!(
         first_name: 'Jane',
@@ -73,7 +73,36 @@ RSpec.describe Contact, type: :model do
         email: 'jane@example.com',
         phone: '1234567890'
       )
+    end
+
+    it 'sends a message to all websocket connections on update' do
+      contact = Contact.create!(
+        first_name: 'Jane',
+        last_name: 'Doe',
+        email: 'jane@example.com',
+        phone: '1234567890'
+      )
+
+      ws_double = double('ws')
+      allow(WebSocketHandler).to receive(:connections).and_return([ws_double])
+      expect(ws_double).to receive(:send).with(/new_contact_event/)
+
       contact.update(first_name: 'Janet')
+    end
+
+    it 'sends a message to all websocket connections on delete' do
+      contact = Contact.create!(
+        first_name: 'Jane',
+        last_name: 'Doe',
+        email: 'jane@example.com',
+        phone: '1234567890'
+      )
+
+      ws_double = double('ws')
+      allow(WebSocketHandler).to receive(:connections).and_return([ws_double])
+      expect(ws_double).to receive(:send).with(/new_contact_event/)
+
+      contact.destroy
     end
   end
 end

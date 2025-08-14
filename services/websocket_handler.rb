@@ -13,10 +13,6 @@ module WebSocketHandler
         connections << ws
       end
 
-      ws.on :message do |event|
-        ws.send(event.data)
-      end
-
       ws.on :close do |_event|
         connections.delete(ws)
       end

@@ -1,9 +1,10 @@
 # Contacts API
 
-A simple RESTful API for managing contacts, built with Sinatra and ActiveRecord.
+A simple RESTful PUBLIC API for managing contacts, built with Sinatra and ActiveRecord.
 Includes real-time updates via WebSocket.
 
 ## Prerequisites
+
 - [homebrew](https://brew.sh/) (Optiona) package manager
 - [Ruby](https://formulae.brew.sh/formula/ruby)
 - [contact-client](https://github.com/artashio/contacts-client)
@@ -34,6 +35,14 @@ Includes real-time updates via WebSocket.
   - `PUT /contacts/:id` - Update a contact
   - `DELETE /contacts/:id` - Delete a contact
 
+## Example: Update a Contact with cURL
+
+```
+curl -X PUT http://localhost:4000/contacts/<ID> \
+   -H "Content-Type: application/json" \
+   -d '{"first_name":"John","last_name":"Doe","email":"test@example.com","phone":"123567890"}'
+```
+
 ## Tests
 
 1. **Set up the test database:**
@@ -44,4 +53,3 @@ Includes real-time updates via WebSocket.
    ```
    bundle exec rspec
    ```
-
