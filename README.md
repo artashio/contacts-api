@@ -7,7 +7,7 @@ Includes real-time updates via WebSocket.
 
 - [homebrew](https://brew.sh/) (Optiona) package manager
 - [Ruby](https://formulae.brew.sh/formula/ruby)
-- [contact-client](https://github.com/artashio/contacts-client)
+- [contacts-client](https://github.com/artashio/contacts-client)
 - [websocat](https://formulae.brew.sh/formula/websocat) (Optional) to access websocket cli
 
 ## Setup
